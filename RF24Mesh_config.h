@@ -12,25 +12,25 @@
 #define MESH_DEFAULT_CHANNEL 97  /** Radio channel to operate on 1-127. This is normally modified by calling mesh.setChannel() */
 /**************************/
 /***       Debug        ***/
-//#define MESH_DEBUG_MINIMAL /** Uncomment for the Master Node to print out address assignments as they are assigned */
-//#define MESH_DEBUG         /** Uncomment to enable debug output to serial **/
+#define MESH_DEBUG_MINIMAL /** Uncomment for the Master Node to print out address assignments as they are assigned */
+#define MESH_DEBUG         /** Uncomment to enable debug output to serial **/
 /**************************/
 
 /** Other Configuration */
 #define MESH_MIN_SAVE_TIME 30000 /** Minimum time required before changing nodeID. Prevents excessive writing to EEPROM */
 #define MESH_DEFAULT_ADDRESS 04444
 #define MESH_MAX_ADDRESSES 255 /** Determines the max size of the array used for storing addresses on the Master Node */
-//#define MESH_ADDRESS_HOLD_TIME 30000 /** How long before a released address becomes available */ 
+//#define MESH_ADDRESS_HOLD_TIME 30000 /** How long before a released address becomes available */
 
   #if defined (MESH_DEBUG)
     #if !defined (__linux) && !defined ARDUINO_SAM_DUE || defined TEENSY || defined(__ARDUINO_X86__)
-		#define MESH_DEBUG_SERIAL		       
+		#define MESH_DEBUG_SERIAL
 	#else
 		#define MESH_DEBUG_PRINTF
 	#endif
   #endif
 
-  
+
 
 
 

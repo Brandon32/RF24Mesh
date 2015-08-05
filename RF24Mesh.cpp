@@ -151,17 +151,18 @@ bool RF24Mesh::releaseAddress(){
 /*****************************************************/
 
 uint16_t RF24Mesh::renewAddress(){
-  static const uint16_t requestDelay = 150;
-  uint8_t reqCounter = 0;
-  network.begin(MESH_DEFAULT_ADDRESS);
-  mesh_address = MESH_DEFAULT_ADDRESS;
-
-  while(!requestAddress(reqCounter)){
-    uint8_t small = millis() & ~7;
-    delay(requestDelay+(small*8));   
-    (++reqCounter) = reqCounter%4;
-  }
-  return mesh_address;
+	static const uint16_t requestDelay = 150;
+	network.begin(MESH_DEFAULT_ADDRESS);
+	mesh_address = MESH_DEFAULT_ADDRESS;
+	for(uint8_t reqCounter = 0; reqCounter < 4; reqCounter++){
+		if (requestAddress(reqCounter))
+		{
+			break;
+		}
+		uint8_t small = millis() & ~7;
+		delay(requestDelay+(small*8));
+	}
+	return mesh_address;
 }
 
 /*****************************************************/
